@@ -1,0 +1,19 @@
+services:
+  db:
+    # To mirror the image Railway uses, minus the PostGIS since there isn't ARM compatibility for it: https://docs.railway.app/databases/postgresql#image
+    image: postgres
+    restart: always
+    container_name: postgres
+    hostname: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: example
+    ports:
+      - '5435:5432'
+
+volumes:
+  pgdata:
+    driver: local
